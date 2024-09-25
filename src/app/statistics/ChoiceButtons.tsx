@@ -9,9 +9,9 @@ export default function ChoiceButtons({ onTopChange, onTimeChange }: ChoiceButto
     const [selectedType, setSelectedType] = useState<string>("tracks");
     const [selectedTime, setSelectedTime] = useState<string>("short_term");
 
-    const styleButtonP1 = 'px-4 py-1 border rounded'
-    const styleButtonP2 = 'bg-spotify-green text-white'
-    const syuleButtonSelected = 'bg-white text-black border-gray-300'
+    const styleButton = 'px-4 py-2 rounded-md'
+    const styleButtonSelected = 'hover:bg-gray-800'
+    const styleButtonNotSelected = 'bg-gray-800 cursor-auto'
 
     const handleTypeChange = (type: string) => {
         setSelectedType(type);
@@ -25,38 +25,38 @@ export default function ChoiceButtons({ onTopChange, onTimeChange }: ChoiceButto
 
     return (
         <div>
-            <div className="flex gap-10">
-                <div className="flex gap-2">
+            <div className="flex gap-8">
+                <div className="flex gap-4">
                     <button
                         onClick={() => handleTypeChange("tracks")}
-                        className={`${styleButtonP1} ${selectedType === "tracks" ? styleButtonP2 : syuleButtonSelected}`}
+                        className={`${styleButton} ${selectedType === "tracks" ? styleButtonNotSelected : styleButtonSelected}`}
                     >
                         Top titres
                     </button>
                     <button
                         onClick={() => handleTypeChange("artists")}
-                        className={`${styleButtonP1} ${selectedType === "artists" ? styleButtonP2 : syuleButtonSelected}`}
+                        className={`${styleButton} ${selectedType === "artists" ? styleButtonNotSelected : styleButtonSelected}`}
                     >
                         Top artistes
                     </button>
                 </div>
 
-                <div className="flex gap-2">
+                <div className="flex gap-4">
                     <button
                         onClick={() => handleTimeChange("short_term")}
-                        className={`${styleButtonP1} ${selectedTime === "short_term" ? styleButtonP2 : syuleButtonSelected}`}
+                        className={`${styleButton} ${selectedTime === "short_term" ? styleButtonNotSelected : styleButtonSelected}`}
                     >
                         4 semaines
                     </button>
                     <button
                         onClick={() => handleTimeChange("medium_term")}
-                        className={`${styleButtonP1} ${selectedTime === "medium_term" ? styleButtonP2 : syuleButtonSelected}`}
+                        className={`${styleButton} ${selectedTime === "medium_term" ? styleButtonNotSelected : styleButtonSelected}`}
                     >
                         6 mois
                     </button>
                     <button
                         onClick={() => handleTimeChange("long_term")}
-                        className={`${styleButtonP1} ${selectedTime === "long_term" ? styleButtonP2 : syuleButtonSelected}`}
+                        className={`${styleButton} ${selectedTime === "long_term" ? styleButtonNotSelected : styleButtonSelected}`}
                     >
                         Toujours
                     </button>

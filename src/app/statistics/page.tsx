@@ -3,13 +3,14 @@
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import ChoiceButtons from "@/app/statistics/ChoiceButtons";
-import TracksResult from "@/app/statistics/TracksResult";
-import ArtistsResult from "@/app/statistics/ArtistsResult";
+import DisplayType from "@/app/statistics/DisplayType";
+import DisplayResult from "@/app/statistics/DisplayResult";
 
 export default function StatisticsPage() {
     const { data: session } = useSession();
     const [selectedType, setSelectedType] = useState<string>("tracks");
     const [selectedTime, setSelectedTime] = useState<string>("short_term");
+    const [displayType, setDisplayType] = useState<boolean>(true);
     const [top, setTop] = useState<any>();
 
     useEffect(() => {
@@ -27,17 +28,16 @@ export default function StatisticsPage() {
 
     return (
         <div>
-            <ChoiceButtons
-                onTopChange={setSelectedType}
-                onTimeChange={setSelectedTime}
-            />
-            <br />
-            {selectedType === 'tracks' &&
-                <TracksResult data={top} />
-            }
-            {selectedType === 'artists' &&
-                <ArtistsResult data={top} />
-            }
+            <div className="flex justify-between px-6">
+                <ChoiceButtons
+                    onTopChange={setSelectedType}
+                    onTimeChange={setSelectedTime}
+                />
+                <DisplayType onTypeChange={setDisplayType}/>
+            </div>
+
+            <br/>
+            <DisplayResult displayType={displayType} selectedType={selectedType} data={top} />
         </div>
     );
 }
