@@ -31,6 +31,13 @@ export default function RootLayout(
                 </AuthWrapper>
             </SessionProvider>
             </body>
+            <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@latest"></script>
+            <script>
+                const lenis = new Lenis({
+                    duration: 1.2,
+                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+                })
+            </script>
         </html>
     );
 }
