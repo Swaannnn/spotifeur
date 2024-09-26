@@ -11,7 +11,9 @@ export async function GET(req: NextRequest) {
 
         spotifyApi.setAccessToken(token.accessToken as string);
 
-        const response = await spotifyApi.getMyRecentlyPlayedTracks()
+        const response = await spotifyApi.getMyRecentlyPlayedTracks({
+            limit: 5
+        });
         return NextResponse.json(response.body);
     } catch (error) {
         console.error('Erreur lors de la récupération des titres récemment écoutés:', error);

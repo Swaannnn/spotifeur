@@ -1,6 +1,6 @@
 import Loader from "@/components/Loader";
-import ListArtist from "@/app/statistics/ListArtist";
-import CardArtist from "@/app/statistics/CardArtist";
+import ListArtist from "@/components/ListArtist";
+import CardArtist from "@/components/CardArtist";
 
 export default function DisplayArtists({data, displayType} : {data: any, displayType: boolean}) {
     if (displayType) {

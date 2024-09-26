@@ -1,5 +1,5 @@
-import ListTrack from "@/app/statistics/ListTrack";
-import CardTrack from "@/app/statistics/CardTrack";
+import ListTrack from "@/components/ListTrack";
+import CardTrack from "@/components/CardTrack";
 import Loader from "@/components/Loader";
 
 export default function DisplayTracks({data, displayType} : {data: any, displayType: boolean}) {

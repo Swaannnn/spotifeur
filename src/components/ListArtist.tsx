@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import {convertFollowers} from "@/lib/converter";
-import PopularityProgressBar from "@/app/statistics/popularityProgressBar";
+import PopularityProgressBar from "@/components/popularityProgressBar";
 
 export default function ListArtist({data: item, pos}: { data: any, pos: number }) {
     if (!item) return null
