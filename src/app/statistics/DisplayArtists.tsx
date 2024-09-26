@@ -1,20 +1,31 @@
-
-import CardArtist from "@/app/statistics/CardArtist";
+import Loader from "@/components/Loader";
 import ListArtist from "@/app/statistics/ListArtist";
+import CardArtist from "@/app/statistics/CardArtist";
 
-export default function DisplayTracks({data, displayType} : {data: any, displayType: boolean}) {
+export default function DisplayArtists({data, displayType} : {data: any, displayType: boolean}) {
     if (displayType) {
-        console.log(data);
         return (
-            data.map((item: any, index: number) => (
-                <ListArtist key={index} data={item} displayType={displayType}/>
-            ))
+            <div>
+                {data ? (
+                    data.map((item: any, index: number) => (
+                        <ListArtist key={index} pos={index+1} data={item}/>
+                    ))
+                ) : (
+                    <Loader />
+                )}
+            </div>
         );
     } else {
         return (
-            data.map((item: any, index: number) => (
-                <CardArtist key={index} data={item} displayType={displayType}/>
-            ))
+            <div className="flex flex-wrap justify-center">
+                {data ? (
+                    data.map((item: any, index: number) => (
+                        <CardArtist key={index} pos={index+1} data={item}/>
+                    ))
+                ) : (
+                    <Loader />
+                )}
+            </div>
         );
     }
 }

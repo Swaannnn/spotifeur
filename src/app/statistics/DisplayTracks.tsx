@@ -8,7 +8,7 @@ export default function DisplayTracks({data, displayType} : {data: any, displayT
             <div>
                 {data ? (
                     data.map((item: any, index: number) => (
-                        <ListTrack key={index} data={item}/>
+                        <ListTrack key={index} pos={index+1} data={item}/>
                     ))
                 ) : (
                     <Loader />
@@ -20,7 +20,7 @@ export default function DisplayTracks({data, displayType} : {data: any, displayT
             <div className="flex flex-wrap justify-center">
                 {data ? (
                     data.map((item: any, index: number) => (
-                        <CardTrack key={index} data={item}/>
+                        <CardTrack key={index} pos={index+1} data={item}/>
                     ))
                 ) : (
                     <Loader />

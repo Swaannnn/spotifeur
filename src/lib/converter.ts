@@ -7,7 +7,6 @@ export function convertMs(ms: number): string {
     return `${minutes}m ${formattedSeconds}s`;
 }
 
-
 export function convertDate(date: string): string {
     const newDate = new Date(date);
     const day = newDate.getDate();
@@ -19,4 +18,9 @@ export function convertDate(date: string): string {
         "juillet", "août", "septembre", "octobre", "novembre", "décembre"
     ];
     return `${day} ${months[monthIndex]} ${year}`;
+}
+
+export function convertFollowers(followers: number) : string {
+    const formattedFollowers = followers.toLocaleString('fr-FR');
+    return `${formattedFollowers} followers`
 }

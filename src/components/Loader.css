@@ -1,0 +1,33 @@
+@keyframes loader-animation {
+    0% {
+        stroke-dasharray: 1, 150;
+        stroke-dashoffset: 0;
+    }
+    50% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -40;
+    }
+    100% {
+        stroke-dasharray: 1, 150;
+        stroke-dashoffset: -120;
+    }
+}
+
+.loader {
+    width: 64px;
+    height: 64px;
+    animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loader-path {
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
+    animation: loader-animation 1.5s ease-in-out infinite;
+    stroke-linecap: round;
+}

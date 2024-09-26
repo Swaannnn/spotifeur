@@ -23,7 +23,7 @@ export default function RootLayout(
 
     return (
         <html lang="fr">
-            <body className="bg-spotify-black text-white">
+            <body className="bg-black2 text-white">
             {!shouldHideHeader && <Header />}
             <SessionProvider>
                 <AuthWrapper>

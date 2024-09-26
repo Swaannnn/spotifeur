@@ -1,34 +1,32 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function CardTrack({data : item} : {data: any}) {
+export default function CardTrack({data: item, pos}: { data: any, pos: number }) {
+    if (!item) return null
     return (
-        <div className="flex flex-col justify-center items-center bg-gray-100/5 p-2 m-2 rounded-lg w-64 h-80">
+        <div className="flex flex-col justify-center items-center bg-black3 p-2 m-2 rounded-lg w-64 h-80">
+            <p className="mb-2">
+                <i>#{pos}</i>
+            </p>
             {item.album && item.album.images && item.album.images[0] && (
-                <div>
-                    <Image src={item.album.images[0].url} alt={item.name} width={200} height={200}/>
-                </div>
+                <Image
+                    src={item.album.images[0].url} alt={item.name}
+                    width={200} height={200}
+                    className="mb-4"
+                />
             )}
-            <br/>
             {item.name && (
-                <div className="whitespace-nowrap overflow-hidden text-ellipsis">
-                    <Link href={item.external_urls.spotify}>
-                        {item.name}
-                    </Link>
-                </div>
+                <Link href={item.external_urls.spotify} className="block w-56 text-center truncate hover:underline">
+                    {item.name}
+                </Link>
             )}
-            <div className="whitespace-nowrap overflow-hidden text-ellipsis">
-                <div className="flex">
-                    {item.artists && item.artists.map((artist: any, index: number) => (
-                        <div key={index}>
-                            <Link href={artist.external_urls.spotify}>
-                                <b>{artist.name}</b>
-                            </Link>
-                            {index < item.artists.length - 1 && ','}
-                        </div>
-                    ))}
-                </div>
-            </div>
+            {item.artists && (
+                <Link href={item.artists[0].external_urls.spotify} className="hover:underline">
+                    <p>
+                        <b>{item.artists[0].name}</b>
+                    </p>
+                </Link>
+            )}
         </div>
     )
 }

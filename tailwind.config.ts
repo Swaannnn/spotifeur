@@ -12,7 +12,11 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       "colors": {
-        "black": "#121212",
+        "black1": "#000000",
+        "black2": "#121212",
+        "black3": "#2A2A2A",
+        "white2": '#F0F0F0',
+        'gray2': '#333333',
         "spotify-green": "#1DB954",
         "spotify-black": "#191414",
       },

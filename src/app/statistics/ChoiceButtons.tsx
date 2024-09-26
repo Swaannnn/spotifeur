@@ -9,9 +9,9 @@ export default function ChoiceButtons({ onTopChange, onTimeChange }: ChoiceButto
     const [selectedType, setSelectedType] = useState<string>("tracks");
     const [selectedTime, setSelectedTime] = useState<string>("short_term");
 
-    const styleButton = 'px-4 py-2 rounded-md'
-    const styleButtonSelected = 'hover:bg-gray-800'
-    const styleButtonNotSelected = 'bg-gray-800 cursor-auto'
+    const styleButton = 'px-4 py-1.5 rounded-full'
+    const styleButtonSelected = 'bg-black3 hover:bg-gray2'
+    const styleButtonNotSelected = 'text-black bg-white hover:bg-white2'
 
     const handleTypeChange = (type: string) => {
         setSelectedType(type);

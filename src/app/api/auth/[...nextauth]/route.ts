@@ -29,7 +29,7 @@ export const authOptions: NextAuthOptions = {
             clientId: process.env.SPOTIFY_CLIENT_ID!,
             clientSecret: process.env.SPOTIFY_CLIENT_SECRET!,
             authorization:
-                "https://accounts.spotify.com/authorize?scope=playlist-modify-private,user-top-read",
+                "https://accounts.spotify.com/authorize?scope=playlist-modify-private,user-top-read,user-read-recently-played",
         }),
     ],
     secret: process.env.NEXTAUTH_SECRET,
