@@ -1,6 +1,9 @@
 # A FAIRE
 - animation de chargement pendant la connection
 - PAGE D'ACCUEIL : 5 dernières musique écoutées
+- PAGE D'ACCUEIL : 5 playlist au pif (https://developer.spotify.com/documentation/web-api/reference/get-list-users-playlists)
+- PAGE D'ACCUEIL : 5 artistes au pif
+- PAGE D'ACCUEIL : 5 albums au pif
 - card artiste : faire mieux pour les images (carré / rectangle)
 
 # erreurs

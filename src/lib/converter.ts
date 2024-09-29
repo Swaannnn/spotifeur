@@ -38,12 +38,15 @@ export function ilya(date: string): string {
     const seconds = Math.floor(interval / 1000);
     const minutes = Math.floor(seconds / 60);
     const hours = Math.floor(minutes / 60);
+    const days = Math.floor(hours / 24);
 
-    if (hours > 0) {
+    if (days > 0) {
+        return `il y a ${days}j ${String((hours-24*days) % 24).padStart(2, '0')}h`;
+    } else if (hours > 0) {
         return `il y a ${hours}h ${String((minutes-60*hours) % 60).padStart(2, '0')}m`;
+    } else {
+        return `${ String(minutes % 60).padStart(2, '0')}m`;
     }
-
-    return `${ String(minutes % 60).padStart(2, '0')}m`;
 }
 
 export function convertFollowers(followers: number) : string {

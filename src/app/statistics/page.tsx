@@ -16,7 +16,7 @@ export default function StatisticsPage() {
     useEffect(() => {
         setTop(null);
         const fetchData = async (type: string, time: string) => {
-            const response = await fetch(`/api/spotify/statistics/top?type=${type}&time_range=${time}`);
+            const response = await fetch(`/api/spotify/statistics/get-top?type=${type}&time_range=${time}`);
             return await response.json();
         };
         if (session) {

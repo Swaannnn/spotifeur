@@ -28,7 +28,7 @@ export const authOptions: NextAuthOptions = {
             clientId: process.env.SPOTIFY_CLIENT_ID!,
             clientSecret: process.env.SPOTIFY_CLIENT_SECRET!,
             authorization:
-                "https://accounts.spotify.com/authorize?scope=playlist-modify-private,user-top-read,user-read-recently-played",
+                "https://accounts.spotify.com/authorize?scope=playlist-modify-private,user-top-read,user-read-recently-played,user-library-read,playlist-read-private,playlist-read-collaborative",
         }),
     ],
     secret: process.env.NEXTAUTH_SECRET,
@@ -37,14 +37,9 @@ export const authOptions: NextAuthOptions = {
             if (account) {
                 token.accessToken = account.access_token as string | undefined;
                 token.refreshToken = account.refresh_token as string | undefined;
-                const expiresIn = account.expires_in as number | undefined;
-                if (expiresIn) {
-                    token.expires_at = Date.now() + expiresIn * 1000;
-                }
             }
 
-            if (Date.now() > (token.expires_at as number)) {
-                token.error = "AccessTokenExpired";
+            if (Date.now() >= (token.expires_at as number)) {
                 const newToken = await refreshAccessToken(token);
                 if (newToken.error) {
                     return { ...newToken, error: "RefreshAccessTokenError" };
