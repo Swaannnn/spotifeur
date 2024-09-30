@@ -46,8 +46,6 @@ export default function Home() {
         return <Loader />;
     }
 
-    console.log(someAlbums);
-
     // restructuer cette page comme celles des statistiques (composants / vérifier les données...)
     return (
         <div>
@@ -66,6 +64,11 @@ export default function Home() {
                         <p>Bienvenue {profileData.display_name} !</p>
                     </div>
 
+                    <p>Mes dernières écoutes :</p>
+                    {recentlyPlayed.map((track: any, index: number) => (
+                        <PlayedTrack key={index} track={track}/>
+                    ))}
+
                     <p>Quelques playlists :</p>
                     {somePlaylists.map((playlist: any, index: number) => (
                         <DisplaySomePlaylists key={index} playlist={playlist}/>
@@ -74,11 +77,6 @@ export default function Home() {
                     <p>Quelques albums :</p>
                     {someAlbums.map((album: any, index: number) => (
                         <DisplaySomeAlbums key={index} album={album}/>
-                    ))}
-
-                    <p>Mes dernières écoutes :</p>
-                    {recentlyPlayed.items.map((track: any, index: number) => (
-                        <PlayedTrack key={index} track={track.track} played_at={track.played_at}/>
                     ))}
                 </div>
             ) : (

@@ -24,9 +24,11 @@ export default function ListTrack({data: item, pos}: { data: any, pos: number })
                 </div>
             )}
             {item.name && (
-                <Link className="truncate hover:underline" href={item.external_urls.spotify}>
-                    {item.name}
-                </Link>
+                <p className="truncate">
+                    <Link className="hover:underline" href={item.external_urls.spotify}>
+                        {item.name}
+                    </Link>
+                </p>
             )}
             <div>
                 {item.artists && item.artists.map((artist: any, index: number) => (
@@ -39,12 +41,16 @@ export default function ListTrack({data: item, pos}: { data: any, pos: number })
                 ))}
             </div>
             {item.album && item.album.name && (
-                <Link className="truncate hover:underline" href={item.album.external_urls.spotify}> {item.album.name} </Link>
+                <p className="truncate">
+                    <Link className="hover:underline" href={item.album.external_urls.spotify}>
+                        {item.album.name}
+                    </Link>
+                </p>
             )}
             {item.album && item.album.release_date && (
-                <div className="truncate">
-                    {convertDate(item.album.release_date)}
-                </div>
+                    <div className="truncate">
+                        {convertDate(item.album.release_date)}
+                    </div>
             )}
             {item.duration_ms && (
                 <div className="truncate">

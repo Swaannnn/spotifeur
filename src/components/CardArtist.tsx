@@ -16,16 +16,11 @@ export default function CardArtist({data: item, pos}: { data: any, pos: number }
                 />
             )}
             {item.name && (
-                <Link href={item.external_urls.spotify} className="block w-56 text-center truncate hover:underline">
-                    <p>{item.name}</p>
-                </Link>
-            )}
-            {item.artists && (
-                <Link href={item.artists[0].external_urls.spotify} className="hover:underline">
-                    <p>
-                        <b>{item.artists[0].name}</b>
-                    </p>
-                </Link>
+                <p className="text-center truncate">
+                    <Link href={item.external_urls.spotify} className="hover:underline">
+                        {item.name}
+                    </Link>
+                </p>
             )}
         </div>
     )

@@ -17,16 +17,19 @@ export async function GET(req: NextRequest) {
         const albums = response.body.items.map((item: any) => {
             return {
                 name: item.album.name,
-                external_urls: item.album.external_urls,
-                images: item.album.images,
+                external_urls: item.album.external_urls.spotify,
+                image: item.album.images[2].url,
                 release_date: item.album.release_date,
-                artists: item.album.artists,
+                artist: {
+                    name: item.album.artists[0].name,
+                    external_urls: item.album.artists[0].external_urls.spotify,
+                },
             }
         })
 
-        // const fourRandomAlbums = albums.sort(() => Math.random() - 0.5).slice(0, 4);
+        const fourRandomAlbums = albums.sort(() => Math.random() - 0.5).slice(0, 4);
 
-        return NextResponse.json(albums);
+        return NextResponse.json(fourRandomAlbums);
     } catch (error) {
         console.error('Erreur lors de la récupération des albums:', error);
         return NextResponse.json({ error: 'Failed to fetch profile' }, { status: 500 });

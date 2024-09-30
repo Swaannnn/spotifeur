@@ -25,9 +25,11 @@ export default function ListArtist({data: item, pos}: { data: any, pos: number }
                 </div>
             )}
             {item.name && (
-                <Link className="truncate hover:underline" href={item.external_urls.spotify}>
-                    {item.name}
-                </Link>
+                <p className="truncate">
+                    <Link className="hover:underline" href={item.external_urls.spotify}>
+                        {item.name}
+                    </Link>
+                </p>
             )}
 
             {/*{item.genres && (*/}

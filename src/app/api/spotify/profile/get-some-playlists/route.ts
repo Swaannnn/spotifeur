@@ -17,10 +17,12 @@ export async function GET(req: NextRequest) {
         const playlists = response.body.items.map((playlist: any) => {
             return {
                 name: playlist.name,
-                external_urls: playlist.external_urls,
+                external_urls: playlist.external_urls.spotify,
                 images: playlist.images,
-                collaborative: playlist.collaborative,
-                owner: playlist.owner,
+                owner: {
+                    display_name: playlist.owner.display_name,
+                    external_urls: playlist.owner.external_urls.spotify,
+                }
             }
         })
 

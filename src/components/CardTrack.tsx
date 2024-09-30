@@ -16,16 +16,18 @@ export default function CardTrack({data: item, pos}: { data: any, pos: number })
                 />
             )}
             {item.name && (
-                <Link href={item.external_urls.spotify} className="block w-56 text-center truncate hover:underline">
-                    {item.name}
-                </Link>
+                <p className="truncate" >
+                    <Link href={item.external_urls.spotify} className="hover:underline">
+                        {item.name}
+                    </Link>
+                </p>
             )}
             {item.artists && (
-                <Link href={item.artists[0].external_urls.spotify} className="hover:underline">
-                    <p>
+                <p className="truncate">
+                    <Link href={item.artists[0].external_urls.spotify} className="hover:underline">
                         <b>{item.artists[0].name}</b>
-                    </p>
-                </Link>
+                    </Link>
+                </p>
             )}
         </div>
     )

@@ -11,7 +11,14 @@ export async function GET(req: NextRequest) {
 
         spotifyApi.setAccessToken(token.accessToken as string);
         const response = await spotifyApi.getMe();
-        return NextResponse.json(response.body);
+
+        const profile = {
+            display_name: response.body.display_name,
+            external_urls: response.body.external_urls,
+            images: response.body.images,
+        }
+
+        return NextResponse.json(profile);
     } catch (error) {
         console.error('Erreur lors de la récupération du profil Spotify:', error);
         return NextResponse.json({ error: 'Failed to fetch profile' }, { status: 500 });
