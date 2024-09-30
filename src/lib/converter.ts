@@ -8,6 +8,10 @@ export function convertMs(ms: number): string {
 }
 
 export function convertDate(date: string): string {
+    if (/^\d{4}$/.test(date)) {
+        return date;
+    }
+
     const newDate = new Date(date);
     const day = newDate.getDate();
     const monthIndex = newDate.getMonth();
@@ -17,8 +21,14 @@ export function convertDate(date: string): string {
         "janvier", "février", "mars", "avril", "mai", "juin",
         "juillet", "août", "septembre", "octobre", "novembre", "décembre"
     ];
+
+    if (isNaN(day) || isNaN(monthIndex) || isNaN(year)) {
+        return date;
+    }
+
     return `${day} ${months[monthIndex]} ${year}`;
 }
+
 
 export function convertFullDate(date: string): string {
     const newDate = new Date(date);
@@ -41,9 +51,9 @@ export function ilya(date: string): string {
     const days = Math.floor(hours / 24);
 
     if (days > 0) {
-        return `il y a ${days}j ${String((hours-24*days) % 24).padStart(2, '0')}h`;
+        return `${days}j ${String((hours-24*days) % 24).padStart(2, '0')}h`;
     } else if (hours > 0) {
-        return `il y a ${hours}h ${String((minutes-60*hours) % 60).padStart(2, '0')}m`;
+        return `${hours}h ${String((minutes-60*hours) % 60).padStart(2, '0')}m`;
     } else {
         return `${ String(minutes % 60).padStart(2, '0')}m`;
     }

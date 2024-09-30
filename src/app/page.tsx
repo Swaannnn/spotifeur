@@ -6,32 +6,34 @@ import { useRouter } from "next/navigation";
 import Loader from "@/components/Loader";
 import Image from "next/image";
 import PlayedTrack from "@/components/PlayedTrack";
-import DisplayPlaylist from "@/components/DisplayPlaylist";
+import DisplaySomePlaylists from "@/components/DisplaySomePlaylists";
+import DisplaySomeAlbums from "@/components/DisplaySomeAlbums";
 
 export default function Home() {
-    console.log("Composant Home monté");
     const { data: session, status } = useSession();
     const router = useRouter();
     const [profileData, setProfileData] = useState<any>(null);
     const [recentlyPlayed, setRecentlyPlayed] = useState<any>(null);
     const [somePlaylists, setSomePlaylists] = useState<any>(null);
+    const [someAlbums, setSomeAlbums] = useState<any>(null);
 
     useEffect(() => {
         if (session) {
             fetch("/api/spotify/profile")
                 .then((res) => res.json())
                 .then((data) => setProfileData(data))
-                .catch(() => router.push("/login"));
 
             fetch("/api/spotify/profile/get-last-tracks-played")
                 .then((res) => res.json())
                 .then((data) => setRecentlyPlayed(data))
-                .catch(() => router.push("/login"));
 
             fetch("/api/spotify/profile/get-some-playlists")
                 .then((res) => res.json())
                 .then((data) => setSomePlaylists(data))
-                .catch(() => router.push("/login"));
+
+            fetch("/api/spotify/profile/get-some-albums")
+                .then((res) => res.json())
+                .then((data) => setSomeAlbums(data))
         }
     }, []);
 
@@ -44,10 +46,12 @@ export default function Home() {
         return <Loader />;
     }
 
+    console.log(someAlbums);
+
     // restructuer cette page comme celles des statistiques (composants / vérifier les données...)
     return (
         <div>
-            {profileData && recentlyPlayed && somePlaylists ? (
+            {profileData && recentlyPlayed && somePlaylists && someAlbums ? (
                 <div>
                     <div className="flex flex-col items-center justify-center">
                         {profileData.images?.[1]?.url && (
@@ -64,7 +68,12 @@ export default function Home() {
 
                     <p>Quelques playlists :</p>
                     {somePlaylists.map((playlist: any, index: number) => (
-                        <DisplayPlaylist key={index} playlist={playlist}/>
+                        <DisplaySomePlaylists key={index} playlist={playlist}/>
+                    ))}
+
+                    <p>Quelques albums :</p>
+                    {someAlbums.map((album: any, index: number) => (
+                        <DisplaySomeAlbums key={index} album={album}/>
                     ))}
 
                     <p>Mes dernières écoutes :</p>
